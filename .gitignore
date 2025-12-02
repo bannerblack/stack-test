@@ -18,8 +18,7 @@ Thumbs.db
 !.env.example
 !.env.test
 
-# User content (not tracked)
-src/content/
-
 # VS Code (optional)
 .vscode/
+
+/src/routes/generated/*

@@ -1,0 +1,33 @@
+views:
+  - type: cards
+    name: Albums
+    filters:
+      and:
+        - file.path.startsWith("Music")
+        - "!image.isEmpty()"
+    order:
+      - file.name
+      - artist
+      - title
+      - release_date
+      - track_scores
+    image: note.image
+  - type: table
+    name: Sorted
+    order:
+      - artist
+      - title
+      - release_date
+      - track_scores
+      - package_score
+      - nostalgia_rating
+    sort:
+      - property: rating
+        direction: ASC
+      - property: artist
+        direction: DESC
+      - property: title
+        direction: DESC
+    columnSize:
+      note.artist: 128
+      note.title: 189
