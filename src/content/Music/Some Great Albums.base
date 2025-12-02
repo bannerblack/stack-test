@@ -4,8 +4,7 @@ views:
     filters:
       and:
         - file.path.startsWith("Music")
-        # Temporarily commenting out image filter to test
-        # - "!image.isEmpty()"
+        - "!image.isEmpty()"
     order:
       - file.name
       - artist

@@ -2,6 +2,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { processDataTable, applyView } from '$lib/datatable/index.js';
+	import { base } from '$app/paths';
 
 	let {
 		config,
@@ -114,11 +115,17 @@
 		const wikilinkMatch = imageValue.match(/\[\[([^\]]+)\]\]/);
 		if (wikilinkMatch) {
 			const imageName = wikilinkMatch[1];
-			const imageUrl = `/${imageName}`;
+			// Use base path for GitHub Pages compatibility
+			const imageUrl = `${base}/${imageName}`;
 			return imageUrl;
 		}
 
-		// Return direct URL or path
+		// For direct URLs/paths, check if they need base path
+		if (imageValue.startsWith('/')) {
+			return `${base}${imageValue}`;
+		}
+		
+		// Return direct URL or path as-is (for external URLs)
 		return imageValue;
 	}
 
