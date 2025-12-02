@@ -61,6 +61,8 @@ package_score: 9
 ...
 ```
 
+---
+
 ### "I want to edit the way the UI looks"
 
 - `src/lib/components/` contains the Shadcn-Svelte components used throughout the app. You can customize these components or create new ones as needed.

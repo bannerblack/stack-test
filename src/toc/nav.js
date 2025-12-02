@@ -8,23 +8,6 @@ export const iconMap = {
 
 export const navMain = [
   {
-    "title": "drafts",
-    "url": "/drafts",
-    "icon": null,
-    "iconColor": null,
-    "isFolder": true,
-    "isActive": false,
-    "items": [
-      {
-        "title": "A Draft Note",
-        "url": "/drafts/a-draft-note",
-        "icon": null,
-        "iconColor": null,
-        "isFolder": false
-      }
-    ]
-  },
-  {
     "title": "Languages",
     "url": "/languages",
     "icon": null,
