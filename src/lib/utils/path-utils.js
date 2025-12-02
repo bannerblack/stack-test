@@ -12,7 +12,7 @@ import { base } from '$app/paths';
 export function getPath(targetPath, currentPath = '', forceAbsolute = false) {
     // Clean up paths
     const cleanTarget = targetPath.startsWith('/') ? targetPath.slice(1) : targetPath;
-    
+
     // For navigation, always use base path to ensure proper GitHub Pages URLs
     // This ensures links like /drafts/note become /stack-test/drafts/note
     return `${base}/${cleanTarget}`;

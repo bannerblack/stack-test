@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "ce2f047052b3d16d",
+        "id": "855cc2299234be33",
         "type": "tabs",
         "children": [
           {
-            "id": "b90d6c34f1e4db3f",
+            "id": "bcf83cce30b3dcbf",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "drafts/A Draft Note.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "A Draft Note"
             }
           }
         ]
@@ -181,7 +185,27 @@
   },
   "active": "ccc474212fba1d31",
   "lastOpenFiles": [
+    "Untitled.md",
+    "Untitled 1.md",
     "drafts/A Draft Note.md",
+    "Languages/Rust/Error Handling.md",
+    "Music/Some Great Albums.base",
+    "Music/albums/Deftones - Saturday Night Wrist.md",
+    "Music/art/uroboros.jpg",
+    "Music/art/totbl.jpg",
+    "Music/art/snw.jpg",
+    "Music/art/foxing.jpg",
+    "Music/art/dum-spiro-spero.jpg",
+    "Music/art/damn.jpg",
+    "Music/art/bp.jpg",
+    "Music/albums/DIR EN GREY - DUM SPIRO SPERO.md",
+    "Music/albums/DIR EN GREY - UROBOROS.md",
+    "Music/albums/Foxing - Foxing.md",
+    "Music/albums/Interpol - Turn On the Bright Lights.md",
+    "Music/albums/Kendrick Lamar - DAMN..md",
+    "Music/art",
+    "Music/albums",
+    "Music",
     "templates",
     "drafts",
     "Languages/Javascript/Methods.md",
@@ -204,20 +228,6 @@
     "Database Examples for Claude/Base with Filters and Properties/0_1.jpeg",
     "Database Examples for Claude/Base with Filters and Properties/0_2.png",
     "naruto/songs/haruka-kanata.md",
-    "naruto/songs/silhouette.md",
-    "naruto/songs/bluebird.md",
-    "Database Examples for Claude/Basic with Properties/Basic Database with Properties.md",
-    "Database Examples for Claude/DO NOT EDIT ANYTHING IN THIS FOLDER.md",
-    "Database Examples for Claude/Basic Database/Basic Database.md",
-    "Database Examples for Claude/Basic Database/Basic Base.base",
-    "docs/see copy 2.md",
-    "docs/see copy.md",
-    "docs/see.md",
-    "docs/Docs.base",
-    "examples/books/pride-and-prejudice.md",
-    "examples/books/dune.md",
-    "examples/books/1984.md",
-    "Untitled.base",
-    "Database Examples for Claude/Base with Grouping and Sorting/Grouping and Sorting Base.base"
+    "naruto/songs/silhouette.md"
   ]
 }

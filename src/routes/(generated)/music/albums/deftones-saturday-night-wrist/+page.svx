@@ -1,0 +1,46 @@
+---
+title: Saturday Night Wrist
+artist: Deftones
+release_date: 2005
+musicbrainz_id: 82be2ea8-9c50-3024-a1be-cf35c2e5fd69
+primary_type: Album
+rating: 4
+nostalgia_rating: 5
+track_scores: 0.66
+package_score: 5
+image: "<WikiLink path="snw.jpg"  />"
+---
+
+<script>
+	import WikiLink from '$lib/components/WikiLink.svelte';
+</script>
+
+![](../album_art/82be2ea8-9c50-3024-a1be-cf35c2e5fd69.jpg)
+
+---
+
+# Deftones - Saturday Night Wrist
+
+---
+
+**Artist:** Deftones
+**Release Date:** 2005
+**Primary Type:** Album
+**Secondary Types:** None
+
+---
+
+## Tracklist
+
+1. Hole in the Earth (04:09)
+2. Rapture (03:25)
+3. Beware (06:00)
+4. Cherry Waves (05:17)
+5. Mein (03:59)
+6. U,U,D,D,L,R,L,R,A,B,Select,Start (04:12)
+7. Xerces (03:42)
+8. Rats!Rats!Rats! (04:00)
+9. Pink Cellphone (03:54)
+10. Combat (04:46)
+11. Kimdracula (03:15)
+12. Rivière (03:45)

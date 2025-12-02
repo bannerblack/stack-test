@@ -1,0 +1,46 @@
+---
+title: DAMN.
+artist: Kendrick Lamar
+release_date: 2017-04-14
+musicbrainz_id: b88655ba-7469-48b8-a296-b9011ab73ef3
+primary_type: Album
+rating: 0
+nostalgia_rating: 4
+track_scores: 0.8
+package_score: 4
+image: "<WikiLink path="damn.jpg"  />"
+---
+
+<script>
+	import WikiLink from '$lib/components/WikiLink.svelte';
+</script>
+
+![](../album_art/b88655ba-7469-48b8-a296-b9011ab73ef3.jpg)
+
+---
+
+# Kendrick Lamar - DAMN.
+
+---
+
+**Artist:** Kendrick Lamar
+**Release Date:** 2017-04-14
+
+---
+
+## Tracklist
+
+1. BLOOD. (01:58)
+2. DNA. (03:05)
+3. YAH. (02:40)
+4. ELEMENT. (03:28)
+5. FEEL. (03:34)
+6. LOYALTY. (03:47)
+7. PRIDE. (04:31)
+8. HUMBLE. (02:56)
+9. LUST. (05:08)
+10. LOVE. (03:31)
+11. XXX. (04:14)
+12. FEAR. (06:54)
+13. GOD. (04:09)
+14. DUCKWORTH. (04:08)

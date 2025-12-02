@@ -24,7 +24,8 @@ build
 
 # Add your custom ignore patterns below:
 
-drafts/
-private/
-templates/
-.trash/
+src/content/drafts/
+src/content/private/
+src/content/templates/
+src/content/.trash/
+src/content/.obsidian/

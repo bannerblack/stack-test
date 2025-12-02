@@ -1,0 +1,13 @@
+---
+title: Some Great Albums
+__hasExtension: false
+icon: database
+---
+
+# Some Great Albums
+
+<script>
+  import AutoDataTable from '$lib/components/AutoDataTable.svelte';
+</script>
+
+<AutoDataTable pagePath="music/some-great-albums" />
