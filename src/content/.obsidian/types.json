@@ -1,0 +1,11 @@
+{
+  "types": {
+    "aliases": "aliases",
+    "cssclasses": "multitext",
+    "tags": "tags",
+    "category": "multitext",
+    "package_score": "number",
+    "nostalgia_rating": "number",
+    "title": "text"
+  }
+}

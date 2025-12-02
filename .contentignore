@@ -1,0 +1,30 @@
+# Content Ignore Configuration
+
+# This file specifies which folders and files should be ignored
+
+# when generating routes from the content directory.
+
+# Hidden folders
+
+.obsidian
+.git
+.vscode
+
+# Temporary files
+
+_.tmp
+_.temp
+~\*
+
+# Common ignore patterns
+
+node_modules
+dist
+build
+
+# Add your custom ignore patterns below:
+
+drafts/
+private/
+templates/
+.trash/

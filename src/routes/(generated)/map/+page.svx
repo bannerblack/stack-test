@@ -1,0 +1,172 @@
+---
+title: Site Map
+description: Complete overview of all notes and content in this knowledge base
+---
+
+<script>
+	import { toc } from '$lib/../toc/toc.js';
+	import { processNavLink } from '$lib/utils/path-utils.js';
+	import { page } from '$app/stores';
+	import MapIcon from '@lucide/svelte/icons/map';
+	import FolderIcon from '@lucide/svelte/icons/folder';
+	import FileIcon from '@lucide/svelte/icons/file';
+	import DatabaseIcon from '@lucide/svelte/icons/database';
+	import { Badge } from '$lib/components/ui/badge/index.js';
+	import * as Card from '$lib/components/ui/card/index.js';
+	
+	// Get current path for relative navigation
+	const currentPath = $derived($page.url.pathname);
+	
+	// Helper to create relative links
+	function getMapLink(path) {
+		return processNavLink(`/${path}`, currentPath);
+	}
+	
+	// Count total notes in a tree section
+	function countNotes(node) {
+		let count = 0;
+		for (const [key, value] of Object.entries(node)) {
+			if (key === '_meta') continue;
+			if (value.path) {
+				count++;
+			} else {
+				count += countNotes(value);
+			}
+		}
+		return count;
+	}
+	
+	// Get folder metadata
+	function getFolderMeta(value) {
+		return value._meta || {};
+	}
+	
+	// Sort entries: folders first, then files, alphabetically within each type
+	function sortEntries(entries) {
+		return entries.sort(([aKey, aValue], [bKey, bValue]) => {
+			if (aKey === '_meta' || bKey === '_meta') return 0;
+			
+			// Folders first
+			const aIsFolder = !aValue.path;
+			const bIsFolder = !bValue.path;
+			
+			if (aIsFolder && !bIsFolder) return -1;
+			if (!aIsFolder && bIsFolder) return 1;
+			
+			// Then alphabetically
+			return aKey.localeCompare(bKey);
+		});
+	}
+</script>
+
+# {title}
+
+<div class="text-muted-foreground mb-6">
+	Explore the complete structure of this knowledge base. Click any item to navigate directly to that content.
+</div>
+
+<!-- Root level overview -->
+<div class="mb-8">
+	<Card.Root>
+		<Card.Header>
+			<Card.Title class="flex items-center gap-2">
+				<MapIcon class="h-5 w-5" />
+				Knowledge Base Overview
+			</Card.Title>
+			<Card.Description>
+				Total notes: <Badge variant="secondary">{countNotes(toc)}</Badge>
+			</Card.Description>
+		</Card.Header>
+	</Card.Root>
+</div>
+
+<!-- Directory tree display -->
+<div class="space-y-6">
+	{#each sortEntries(Object.entries(toc)) as [key, value]}
+		{#if key !== '_meta'}
+			{#if !value.path}
+				<!-- This is a folder -->
+				{@const folderMeta = getFolderMeta(value)}
+				{@const folderTitle = folderMeta.title || folderMeta.__originalName || key}
+				{@const noteCount = countNotes(value)}
+				
+				<Card.Root class="border-l-4 border-l-primary">
+					<Card.Header>
+						<Card.Title class="flex items-center gap-2 text-lg">
+							<FolderIcon class="h-5 w-5" />
+							<a href={getMapLink(key)} class="hover:underline">{folderTitle}</a>
+							<Badge variant="outline">{noteCount} notes</Badge>
+						</Card.Title>
+						{#if folderMeta.description}
+							<Card.Description>{folderMeta.description}</Card.Description>
+						{/if}
+					</Card.Header>
+					<Card.Content>
+						<!-- Show first few files in folder as preview -->
+						<div class="grid gap-2">
+							{#each sortEntries(Object.entries(value)).slice(0, 8) as [subKey, subValue]}
+								{#if subKey !== '_meta'}
+									{#if !subValue.path}
+										<!-- Subfolder -->
+										{@const subFolderMeta = getFolderMeta(subValue)}
+										{@const subFolderTitle = subFolderMeta.title || subFolderMeta.__originalName || subKey}
+										{@const subNoteCount = countNotes(subValue)}
+										
+										<div class="flex items-center gap-2 p-2 rounded-md bg-muted/30">
+											<FolderIcon class="h-4 w-4" />
+											<a href={getMapLink(key + '/' + subKey)} class="hover:underline font-medium flex-1">{subFolderTitle}</a>
+											<Badge variant="secondary" class="text-xs">{subNoteCount}</Badge>
+										</div>
+									{:else}
+										<!-- File -->
+										<div class="flex items-center gap-2 text-sm">
+											{#if subValue.path?.endsWith('.base')}
+												<DatabaseIcon class="h-4 w-4" />
+											{:else}
+												<FileIcon class="h-4 w-4" />
+											{/if}
+											<a href={getMapLink(key + '/' + subKey)} class="hover:underline">{subValue.title || subKey}</a>
+											{#if subValue.path?.endsWith('.base')}
+												<Badge variant="outline" class="text-xs">Database</Badge>
+											{/if}
+										</div>
+									{/if}
+								{/if}
+							{/each}
+							{#if sortEntries(Object.entries(value)).length > 8}
+								<div class="text-sm text-muted-foreground italic">
+									...and {sortEntries(Object.entries(value)).length - 8} more items
+								</div>
+							{/if}
+						</div>
+					</Card.Content>
+				</Card.Root>
+			{:else}
+				<!-- This is a root-level file -->
+				<Card.Root>
+					<Card.Header>
+						<Card.Title class="flex items-center gap-2">
+							{#if value.path?.endsWith('.base')}
+								<DatabaseIcon class="h-5 w-5" />
+							{:else}
+								<FileIcon class="h-5 w-5" />
+							{/if}
+							<a href={getMapLink(key)} class="hover:underline">{value.title || key}</a>
+							{#if value.path?.endsWith('.base')}
+								<Badge variant="outline">Database</Badge>
+							{/if}
+						</Card.Title>
+						{#if value.description}
+							<Card.Description>{value.description}</Card.Description>
+						{/if}
+					</Card.Header>
+				</Card.Root>
+			{/if}
+		{/if}
+	{/each}
+</div>
+
+<!-- Footer stats -->
+<div class="mt-12 text-center text-sm text-muted-foreground">
+	Site map generated from {Object.keys(toc).length} top-level sections
+</div>
