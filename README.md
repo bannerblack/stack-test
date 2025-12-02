@@ -43,6 +43,24 @@ Use [Obsidian properties](https://help.obsidian.md/properties) to customize note
 - Images: `static/images/`
 - Shadcn-Svelte Components: `src/lib/components/ui/`
 
+---
+
+Example:
+
+```markdown
+---
+title: Rust Code Example
+category: Programming
+icon: rocket
+nostalgia_rating: 5
+package_score: 9
+---
+
+# Sweet Markdown Content
+
+...
+```
+
 ### "I want to edit the way the UI looks"
 
 - `src/lib/components/` contains the Shadcn-Svelte components used throughout the app. You can customize these components or create new ones as needed.
