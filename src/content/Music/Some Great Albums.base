@@ -4,14 +4,16 @@ views:
     filters:
       and:
         - file.path.startsWith("Music")
-        - "!image.isEmpty()"
+        # Temporarily commenting out image filter to test
+        # - "!image.isEmpty()"
     order:
       - file.name
       - artist
       - title
       - release_date
       - track_scores
-    image: note.image
+      - rating
+    image: image
   - type: table
     name: Sorted
     order:
@@ -21,6 +23,7 @@ views:
       - track_scores
       - package_score
       - nostalgia_rating
+      - rating
     sort:
       - property: rating
         direction: ASC
@@ -28,6 +31,3 @@ views:
         direction: DESC
       - property: title
         direction: DESC
-    columnSize:
-      note.artist: 128
-      note.title: 189

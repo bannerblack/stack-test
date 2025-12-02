@@ -124,9 +124,10 @@ export const toc = {
             "artist",
             "title",
             "release_date",
-            "track_scores"
+            "track_scores",
+            "rating"
           ],
-          "image": "note.image"
+          "image": "image"
         },
         {
           "type": "table",
@@ -137,7 +138,8 @@ export const toc = {
             "release_date",
             "track_scores",
             "package_score",
-            "nostalgia_rating"
+            "nostalgia_rating",
+            "rating"
           ],
           "sort": [
             {
@@ -152,11 +154,7 @@ export const toc = {
               "property": "title",
               "direction": "DESC"
             }
-          ],
-          "columnSize": {
-            "note.artist": 128,
-            "note.title": 189
-          }
+          ]
         }
       ]
     },

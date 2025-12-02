@@ -11,14 +11,13 @@
             "id": "bcf83cce30b3dcbf",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "bases",
               "state": {
-                "file": "drafts/A Draft Note.md",
-                "mode": "source",
-                "source": false
+                "file": "Music/Some Great Albums.base",
+                "viewName": "Albums"
               },
-              "icon": "lucide-file",
-              "title": "A Draft Note"
+              "icon": "lucide-layout-grid",
+              "title": "Some Great Albums"
             }
           }
         ]
@@ -183,14 +182,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "ccc474212fba1d31",
+  "active": "bcf83cce30b3dcbf",
   "lastOpenFiles": [
+    "Music/albums/Deftones - Saturday Night Wrist.md",
+    "Languages/Rust/Error Handling.md",
+    "drafts/A Draft Note.md",
     "Untitled.md",
     "Untitled 1.md",
-    "drafts/A Draft Note.md",
-    "Languages/Rust/Error Handling.md",
     "Music/Some Great Albums.base",
-    "Music/albums/Deftones - Saturday Night Wrist.md",
     "Music/art/uroboros.jpg",
     "Music/art/totbl.jpg",
     "Music/art/snw.jpg",

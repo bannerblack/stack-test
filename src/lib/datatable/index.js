@@ -16,8 +16,8 @@ export function collectAllNotes() {
                 const notePath = parentPath ? `${parentPath}/${key}` : key;
                 const noteData = {
                     'file.name': value.title || key,
-                    'file.path': notePath,
-                    'file.fullname': notePath,
+                    'file.path': value.path, // Use the original file path, not the slugified one
+                    'file.fullname': value.path,
                     'file.url': `/${notePath}`,
                     ...value // Include all frontmatter properties
                 };
