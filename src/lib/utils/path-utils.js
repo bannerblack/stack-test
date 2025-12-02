@@ -12,43 +12,10 @@ import { base } from '$app/paths';
 export function getPath(targetPath, currentPath = '', forceAbsolute = false) {
     // Clean up paths
     const cleanTarget = targetPath.startsWith('/') ? targetPath.slice(1) : targetPath;
-    const cleanCurrent = currentPath.startsWith('/') ? currentPath.slice(1) : currentPath;
-
-    // If forcing absolute or config says to use absolute
-    if (forceAbsolute || config.paths.forceAbsolute || !config.paths.useRelative) {
-        return `${base || config.site.baseUrl}/${cleanTarget}`;
-    }
-
-    // For relative paths, calculate the relationship
-    if (!cleanCurrent || cleanCurrent === cleanTarget) {
-        // Same level or root
-        return cleanTarget || './';
-    }
-
-    // Calculate relative path
-    const currentParts = cleanCurrent.split('/').filter(Boolean);
-    const targetParts = cleanTarget.split('/').filter(Boolean);
-
-    // Find common base
-    let commonLength = 0;
-    while (
-        commonLength < currentParts.length &&
-        commonLength < targetParts.length &&
-        currentParts[commonLength] === targetParts[commonLength]
-    ) {
-        commonLength++;
-    }
-
-    // Build relative path
-    const upLevels = currentParts.length - commonLength;
-    const downPath = targetParts.slice(commonLength);
-
-    if (upLevels === 0 && downPath.length === 0) {
-        return './';
-    }
-
-    const relativePath = '../'.repeat(upLevels) + downPath.join('/');
-    return relativePath || './';
+    
+    // For navigation, always use base path to ensure proper GitHub Pages URLs
+    // This ensures links like /drafts/note become /stack-test/drafts/note
+    return `${base}/${cleanTarget}`;
 }
 
 /**
@@ -83,5 +50,7 @@ export function processNavLink(href, currentPath = '') {
         return href;
     }
 
-    return getPath(href, currentPath);
+    // For navigation links, always use base path to ensure proper GitHub Pages URLs
+    const cleanTarget = href.startsWith('/') ? href.slice(1) : href;
+    return `${base}/${cleanTarget}`;
 }
