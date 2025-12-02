@@ -1,4 +1,5 @@
 import { toc } from '../../toc/toc.js';
+import { base } from '$app/paths';
 
 /**
  * Collect all notes from the TOC tree with their properties
@@ -18,7 +19,7 @@ export function collectAllNotes() {
                     'file.name': value.title || key,
                     'file.path': value.path, // Use the original file path, not the slugified one
                     'file.fullname': value.path,
-                    'file.url': `/${notePath}`,
+                    'file.url': `${base}/${notePath}`, // Include base path for proper GitHub Pages URLs
                     ...value // Include all frontmatter properties
                 };
 
