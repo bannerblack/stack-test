@@ -124,7 +124,7 @@
 		if (imageValue.startsWith('/')) {
 			return `${base}${imageValue}`;
 		}
-		
+
 		// Return direct URL or path as-is (for external URLs)
 		return imageValue;
 	}
