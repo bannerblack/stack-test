@@ -12,8 +12,7 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
 		"generate": "node scripts/generate-routes.js",
-		"watch": "node scripts/watch.js",
-		"prebuild": "npm run generate"
+		"watch": "node scripts/watch.js"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.4.0",
