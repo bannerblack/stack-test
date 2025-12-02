@@ -7,8 +7,10 @@
 # Hidden folders
 
 .obsidian
-.git
-.vscode
+.trash
+templates
+drafts
+private
 
 # Temporary files
 

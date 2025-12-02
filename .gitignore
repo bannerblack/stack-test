@@ -7,7 +7,6 @@ node_modules
 .wrangler
 /.svelte-kit
 /build
-/.vscode
 
 # OS
 .DS_Store
@@ -19,9 +18,8 @@ Thumbs.db
 !.env.example
 !.env.test
 
-# Vite
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
+# User content (not tracked)
+src/content/
 
-# Custom
-src/content
+# VS Code (optional)
+.vscode/
