@@ -1,7 +1,7 @@
 ---
 title: Foxing
 artist: Foxing
-release_date: 2024-09-13T00:00:00.000Z
+release_date: '2024-09-12'
 musicbrainz_id: e6c562a8-b3ae-4a25-942a-2e35f8137a5e
 primary_type: Album
 rating: 4.5
@@ -18,7 +18,7 @@ modified: '2025-12-03T03:30:14.879Z'
   const frontmatter = {
   "title": "Foxing",
   "artist": "Foxing",
-  "release_date": "2024-09-13T00:00:00.000Z",
+  "release_date": "2024-09-12",
   "musicbrainz_id": "e6c562a8-b3ae-4a25-942a-2e35f8137a5e",
   "primary_type": "Album",
   "rating": 4.5,

@@ -8,6 +8,23 @@ export const iconMap = {
 
 export const navMain = [
   {
+    "title": "Documentation",
+    "url": "/documentation",
+    "icon": null,
+    "iconColor": null,
+    "isFolder": true,
+    "isActive": false,
+    "items": [
+      {
+        "title": "Configuration",
+        "url": "/documentation/configuration",
+        "icon": null,
+        "iconColor": null,
+        "isFolder": false
+      }
+    ]
+  },
+  {
     "title": "Languages",
     "url": "/languages",
     "icon": null,
@@ -105,6 +122,13 @@ export const navMain = [
   }
 ];
 
-export const pinnedNotes = [];
+export const pinnedNotes = [
+  {
+    "name": "Some Great Albums",
+    "url": "/music/some-great-albums",
+    "icon": "database",
+    "iconColor": null
+  }
+];
 
 export const pageNotes = [];

@@ -1,7 +1,7 @@
 ---
 title: Turn On the Bright Lights
 artist: Interpol
-release_date: 2002-08-19T00:00:00.000Z
+release_date: '2002-08-18'
 musicbrainz_id: e7227840-5ef2-3813-af26-15dab34e1a51
 primary_type: Album
 rating: 4
@@ -18,7 +18,7 @@ modified: '2025-12-03T03:19:39.100Z'
   const frontmatter = {
   "title": "Turn On the Bright Lights",
   "artist": "Interpol",
-  "release_date": "2002-08-19T00:00:00.000Z",
+  "release_date": "2002-08-18",
   "musicbrainz_id": "e7227840-5ef2-3813-af26-15dab34e1a51",
   "primary_type": "Album",
   "rating": 4,

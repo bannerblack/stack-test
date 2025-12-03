@@ -37,6 +37,14 @@ export function loadObsidianTypes(contentDir, fs, path) {
 export function convertToProperType(key, value, obsidianTypes = {}) {
     if (value == null) return value;
 
+    // Convert Date objects to YYYY-MM-DD string format
+    if (value instanceof Date) {
+        const year = value.getFullYear();
+        const month = String(value.getMonth() + 1).padStart(2, '0');
+        const day = String(value.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
     // Check if we have a specific type from Obsidian
     const obsidianType = obsidianTypes[key];
     if (obsidianType === 'text' || obsidianType === 'multitext') {

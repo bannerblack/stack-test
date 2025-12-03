@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Music/albums/Deftones - Saturday Night Wrist.md",
+                "file": "Documentation/Configuration.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "Deftones - Saturday Night Wrist"
+              "title": "Configuration"
             }
           }
         ]
@@ -185,17 +185,19 @@
   },
   "active": "bcf83cce30b3dcbf",
   "lastOpenFiles": [
+    "drafts/A Draft Note.md",
+    "Documentation/Configuration.md",
+    "Documentation",
     "Music/Some Great Albums.base",
+    "Music/albums/Deftones - Saturday Night Wrist.md",
     "Music/albums/Kendrick Lamar - DAMN..md",
     "Music/albums/Interpol - Turn On the Bright Lights.md",
     "Music/albums/Foxing - Foxing.md",
     "Music/albums/DIR EN GREY - UROBOROS.md",
     "Music/albums/DIR EN GREY - DUM SPIRO SPERO.md",
-    "Music/albums/Deftones - Saturday Night Wrist.md",
     "Music/art/dum-spiro-spero.jpg",
     "Music/art/damn.jpg",
     "Languages/Rust/Error Handling.md",
-    "drafts/A Draft Note.md",
     "General Example.md",
     "Test Note.md",
     "Untitled.md",
@@ -225,7 +227,6 @@
     "Database Examples for Claude/index.md",
     "examples/projects/index.md",
     "examples/index.md",
-    "Database Examples for Claude/Base with Filters and Properties/Intermediate Base.base",
     "Database Examples for Claude/Base with Filters and Properties/Basic Database with Properties.md",
     "Database Examples for Claude/Base with Filters and Properties/0_1.jpeg",
     "Database Examples for Claude/Base with Filters and Properties/0_2.png"

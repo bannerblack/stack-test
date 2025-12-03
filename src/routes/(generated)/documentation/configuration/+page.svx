@@ -1,0 +1,63 @@
+---
+created: '2025-12-03T04:37:17.381Z'
+modified: '2025-12-03T04:56:21.448Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "created": "2025-12-03T04:37:17.381Z",
+  "modified": "2025-12-03T04:56:21.448Z"
+};
+  const pagePath = 'documentation/configuration';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+## src/template-config.js
+
+```js
+export const templateConfig = {
+    basic_note_cover_image: true,
+    basic_note_top_title: false,
+    basic_note_music_metadata: true,
+    colored_headings: false,
+    constrain_cover_image: true,
+    max_cover_image_width: '50%'
+}
+```
+
+This config file governs settings/choices you can make about the way your notes are displayed.
+
+1. `basic_note_cover_image`
+	- `true` : displays a cover image on the top of a note if the note contains an `image` property set to an existing photo location
+	- `false` : does not display a cover image
+2. `basic_note_top_title`
+	- `true` : displays a note title on the top of the note
+	- `false` : does not display a note title on the top of the note
+3. `basic_note_music_metadata`
+	- `true` : displays a card of music metadata the highlights specific properties: ["artist", "title", "release_date", "rating"]
+	- `false` : does not display the listed properties
+4. `colored_headings`
+	- `true` : colors headings h1-h6 with theme chart colors 1-6
+	- `false` : leaves headings the default text color
+5. `contrain_cover_image`
+	- `true` : limits the max width of the cover image to the `max_cover_image_width` (percentage) property
+	- `false` : does not limit the width of the image (large images will be the full width of the note)
+6. `max_cover_image_width`
+	- `1%-100%` - Set the max width percentage of the cover image enabled with `basic_note_cover_image`
+
+## src/pinned-config.js
+
+```js
+export const pinnedConfig = {
+    pinned_notes_limit: 5,
+    pinned_bases: ['Some Great Albums.base',]
+}
+```
+
+1. `pinned_notes_limit` - Not currently implemented
+2. `pinned_bases`: 
+	- (List of strings) | ['Name of base.base', 'Name of Second base.base] - Because bases don't have properties, lets you manually add bases to your pinned notes section on sidebar
+
+</GeneralNote>

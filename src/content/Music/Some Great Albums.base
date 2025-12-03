@@ -9,9 +9,9 @@ views:
       - file.name
       - artist
       - title
-      - release_date
       - track_scores
       - rating
+      - release_date
     image: image
   - type: table
     name: Sorted

@@ -6,6 +6,7 @@ import { loadObsidianTypes } from '../src/lib/templates/processors/frontmatter-p
 import { copyImages } from '../src/lib/templates/processors/image-processor.js';
 import { generateTemplatedRoute, generateBaseFileRoute } from '../src/lib/templates/template-selector.js';
 import { convertToProperType } from '../src/lib/templates/processors/frontmatter-parser.js';
+import { pinnedConfig } from '../src/pinned-config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -468,7 +469,7 @@ function buildNavMain(tree, parentPath = '') {
 	return navItems;
 }
 
-// Collect pinned notes from tree (notes with pin: true in frontmatter)
+// Collect pinned notes from tree (notes with pin: true in frontmatter OR bases listed in pinned-config.js)
 function collectPinnedNotes(tree, currentPath = '') {
 	const pinned = [];
 
@@ -476,8 +477,14 @@ function collectPinnedNotes(tree, currentPath = '') {
 		if (key === '_meta' || key === 'index') continue;
 
 		if (value.path) {
-			// This is a file - check if it's pinned
-			if (value.pin === 'true' || value.pin === true) {
+			// This is a file
+			const fileName = path.basename(value.path);
+			const isBaseFile = value.path.endsWith('.base');
+			const isPinnedInConfig = isBaseFile && pinnedConfig.pinned_bases?.includes(fileName);
+			const isPinnedInFrontmatter = value.pin === 'true' || value.pin === true;
+			
+			// Check if it's pinned via frontmatter OR config
+			if (isPinnedInFrontmatter || isPinnedInConfig) {
 				const route = currentPath ? `/${currentPath}/${key}` : `/${key}`;
 				pinned.push({
 					name: value.title || key,

@@ -1,7 +1,7 @@
 ---
 title: DAMN.
 artist: Kendrick Lamar
-release_date: 2017-04-14T00:00:00.000Z
+release_date: '2017-04-13'
 musicbrainz_id: b88655ba-7469-48b8-a296-b9011ab73ef3
 primary_type: Album
 rating: -1
@@ -18,7 +18,7 @@ modified: '2025-12-03T03:29:52.007Z'
   const frontmatter = {
   "title": "DAMN.",
   "artist": "Kendrick Lamar",
-  "release_date": "2017-04-14T00:00:00.000Z",
+  "release_date": "2017-04-13",
   "musicbrainz_id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
   "primary_type": "Album",
   "rating": -1,

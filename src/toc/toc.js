@@ -1,4 +1,14 @@
 export const toc = {
+  "documentation": {
+    "configuration": {
+      "path": "Documentation/Configuration.md",
+      "title": "Configuration",
+      "__hasExtension": false
+    },
+    "_meta": {
+      "__originalName": "Documentation"
+    }
+  },
   "languages": {
     "rust": {
       "error-handling": {
@@ -36,7 +46,7 @@ export const toc = {
         "title": "Dum Spiro Spero",
         "__hasExtension": false,
         "artist": "DIR EN GREY",
-        "release_date": "2011-08-01T00:00:00.000Z",
+        "release_date": "2011-07-31",
         "musicbrainz_id": "4ead1ec8-65fd-4d44-b2c3-a8e1bdf5467a",
         "image": "[[dum-spiro-spero.jpg]]",
         "primary_type": "Album",
@@ -50,7 +60,7 @@ export const toc = {
         "title": "UROBOROS",
         "__hasExtension": false,
         "artist": "DIR EN GREY",
-        "release_date": "2008-11-11T00:00:00.000Z",
+        "release_date": "2008-11-10",
         "musicbrainz_id": "f3a260b7-669f-3f0c-a8d6-21886fade241",
         "primary_type": "Album",
         "rating": 5,
@@ -64,7 +74,7 @@ export const toc = {
         "title": "Foxing",
         "__hasExtension": false,
         "artist": "Foxing",
-        "release_date": "2024-09-13T00:00:00.000Z",
+        "release_date": "2024-09-12",
         "musicbrainz_id": "e6c562a8-b3ae-4a25-942a-2e35f8137a5e",
         "primary_type": "Album",
         "rating": 4.5,
@@ -78,7 +88,7 @@ export const toc = {
         "title": "Turn On the Bright Lights",
         "__hasExtension": false,
         "artist": "Interpol",
-        "release_date": "2002-08-19T00:00:00.000Z",
+        "release_date": "2002-08-18",
         "musicbrainz_id": "e7227840-5ef2-3813-af26-15dab34e1a51",
         "primary_type": "Album",
         "rating": 4,
@@ -92,7 +102,7 @@ export const toc = {
         "title": "DAMN.",
         "__hasExtension": false,
         "artist": "Kendrick Lamar",
-        "release_date": "2017-04-14T00:00:00.000Z",
+        "release_date": "2017-04-13",
         "musicbrainz_id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
         "primary_type": "Album",
         "rating": -1,
@@ -124,9 +134,9 @@ export const toc = {
             "file.name",
             "artist",
             "title",
-            "release_date",
             "track_scores",
-            "rating"
+            "rating",
+            "release_date"
           ],
           "image": "image"
         },
