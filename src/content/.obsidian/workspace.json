@@ -11,13 +11,14 @@
             "id": "bcf83cce30b3dcbf",
             "type": "leaf",
             "state": {
-              "type": "bases",
+              "type": "markdown",
               "state": {
-                "file": "Music/Some Great Albums.base",
-                "viewName": "Albums"
+                "file": "Music/albums/Deftones - Saturday Night Wrist.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-grid",
-              "title": "Some Great Albums"
+              "icon": "lucide-file",
+              "title": "Deftones - Saturday Night Wrist"
             }
           }
         ]
@@ -77,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 297.5
   },
   "right": {
     "id": "011cd02cb51dd603",
@@ -184,24 +185,26 @@
   },
   "active": "bcf83cce30b3dcbf",
   "lastOpenFiles": [
+    "Music/Some Great Albums.base",
+    "Music/albums/Kendrick Lamar - DAMN..md",
+    "Music/albums/Interpol - Turn On the Bright Lights.md",
+    "Music/albums/Foxing - Foxing.md",
+    "Music/albums/DIR EN GREY - UROBOROS.md",
+    "Music/albums/DIR EN GREY - DUM SPIRO SPERO.md",
     "Music/albums/Deftones - Saturday Night Wrist.md",
+    "Music/art/dum-spiro-spero.jpg",
+    "Music/art/damn.jpg",
     "Languages/Rust/Error Handling.md",
     "drafts/A Draft Note.md",
+    "General Example.md",
+    "Test Note.md",
     "Untitled.md",
     "Untitled 1.md",
-    "Music/Some Great Albums.base",
     "Music/art/uroboros.jpg",
     "Music/art/totbl.jpg",
     "Music/art/snw.jpg",
     "Music/art/foxing.jpg",
-    "Music/art/dum-spiro-spero.jpg",
-    "Music/art/damn.jpg",
     "Music/art/bp.jpg",
-    "Music/albums/DIR EN GREY - DUM SPIRO SPERO.md",
-    "Music/albums/DIR EN GREY - UROBOROS.md",
-    "Music/albums/Foxing - Foxing.md",
-    "Music/albums/Interpol - Turn On the Bright Lights.md",
-    "Music/albums/Kendrick Lamar - DAMN..md",
     "Music/art",
     "Music/albums",
     "Music",
@@ -225,8 +228,6 @@
     "Database Examples for Claude/Base with Filters and Properties/Intermediate Base.base",
     "Database Examples for Claude/Base with Filters and Properties/Basic Database with Properties.md",
     "Database Examples for Claude/Base with Filters and Properties/0_1.jpeg",
-    "Database Examples for Claude/Base with Filters and Properties/0_2.png",
-    "naruto/songs/haruka-kanata.md",
-    "naruto/songs/silhouette.md"
+    "Database Examples for Claude/Base with Filters and Properties/0_2.png"
   ]
 }

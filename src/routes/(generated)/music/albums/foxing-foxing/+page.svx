@@ -1,23 +1,38 @@
 ---
 title: Foxing
 artist: Foxing
-release_date: 2024-09-13
+release_date: 2024-09-13T00:00:00.000Z
 musicbrainz_id: e6c562a8-b3ae-4a25-942a-2e35f8137a5e
 primary_type: Album
-rating: 0
+rating: 4.5
 nostalgia_rating: 5
 track_scores: 0.7
 package_score: 5
-image: "<WikiLink path="foxing.jpg"  />"
+image: '[[foxing.jpg]]'
+created: '2025-12-02T21:37:19.568Z'
+modified: '2025-12-03T03:30:14.879Z'
 ---
 
 <script>
-	import WikiLink from '$lib/components/WikiLink.svelte';
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "Foxing",
+  "artist": "Foxing",
+  "release_date": "2024-09-13T00:00:00.000Z",
+  "musicbrainz_id": "e6c562a8-b3ae-4a25-942a-2e35f8137a5e",
+  "primary_type": "Album",
+  "rating": 4.5,
+  "nostalgia_rating": 5,
+  "track_scores": 0.7,
+  "package_score": 5,
+  "image": "[[foxing.jpg]]",
+  "created": "2025-12-02T21:37:19.568Z",
+  "modified": "2025-12-03T03:30:14.879Z"
+};
+  const pagePath = 'music/albums/foxing-foxing';
 </script>
 
-![](../album_art/e6c562a8-b3ae-4a25-942a-2e35f8137a5e.jpg)
-
----
+<GeneralNote {frontmatter} {pagePath}>
 
 # Foxing - Foxing
 
@@ -43,3 +58,6 @@ image: "<WikiLink path="foxing.jpg"  />"
 11. Dead Internet (02:57)
 12. Hall of Frozen Heads (06:20)
 13. Cry Baby (03:36)
+
+
+</GeneralNote>

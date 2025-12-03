@@ -10,11 +10,6 @@ track_scores: 0.91
 package_score: 5
 image: "[[uroboros.jpg]]"
 ---
-
-![](../album_art/f3a260b7-669f-3f0c-a8d6-21886fade241.jpg)
-
----
-
 # DIR EN GREY - UROBOROS
 
 ---
@@ -43,3 +38,11 @@ image: "[[uroboros.jpg]]"
 13. Gaika, chinmoku ga nemuru koro (04:23)
 14. Dozing green (04:07)
 15. Inconvenient ideal (04:23)
+
+### Info
+
+I was in *deep* as a Dir en grey fan when this album came out. A few of the songs were previewed early on a metal music show called Full Metal Jackie. I'll never forget sitting with my forehead down at my shitty little family computer in the room next to the garage, listening through my shitty speakers. I'm pretty sure is was Red Soil and Doukoku to Sarinu? Maybe? 
+
+This was only a few months after seeing them live for the first time! (The Rose Trims Again 2008)
+
+This tracklist includes `Bugaboo Respira`, which originally released on the vinyl only. It's a pity the normal album on Spotify has the English Glass Skin and Dozing Green.

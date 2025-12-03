@@ -4,17 +4,12 @@ artist: Interpol
 release_date: 2002-08-19
 musicbrainz_id: e7227840-5ef2-3813-af26-15dab34e1a51
 primary_type: Album
-rating: 0
+rating: 4
 nostalgia_rating: 3
 track_scores: 0.75
 package_score: 3
 image: "[[totbl.jpg]]"
 ---
-
-![](../album_art/e7227840-5ef2-3813-af26-15dab34e1a51.jpg)
-
----
-
 # Interpol - Turn On the Bright Lights
 
 ---

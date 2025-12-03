@@ -30,9 +30,14 @@ const config = {
 	preprocess: [
 		{
 			markup: ({ content, filename }) => {
+				// Skip wikilink preprocessing for generated routes but let mdsvex run
+				if (filename && filename.includes('(generated)')) {
+					return { code: content };
+				}
+
 				// Only process .svx, .md, and .base files
 				if (filename && (filename.endsWith('.svx') || filename.endsWith('.md') || filename.endsWith('.base'))) {
-					// Process wikilinks and embeds
+					// Process wikilinks and embeds for non-generated files
 					let processed = processWikilinks(content);
 					// Add WikiLink import if needed
 					processed = addWikiLinkImport(processed);

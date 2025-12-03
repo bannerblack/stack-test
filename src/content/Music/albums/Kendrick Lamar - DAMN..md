@@ -4,17 +4,12 @@ artist: Kendrick Lamar
 release_date: 2017-04-14
 musicbrainz_id: b88655ba-7469-48b8-a296-b9011ab73ef3
 primary_type: Album
-rating: 0
+rating: -1
 nostalgia_rating: 4
 track_scores: 0.8
 package_score: 4
 image: "[[damn.jpg]]"
 ---
-
-![](../album_art/b88655ba-7469-48b8-a296-b9011ab73ef3.jpg)
-
----
-
 # Kendrick Lamar - DAMN.
 
 ---

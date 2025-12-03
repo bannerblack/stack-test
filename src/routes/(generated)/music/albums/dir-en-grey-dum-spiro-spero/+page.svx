@@ -1,27 +1,44 @@
 ---
 title: Dum Spiro Spero
 artist: DIR EN GREY
-release_date: 2011-08-01
+release_date: 2011-08-01T00:00:00.000Z
 musicbrainz_id: 4ead1ec8-65fd-4d44-b2c3-a8e1bdf5467a
-image: '<WikiLink path="dum-spiro-spero.jpg"  />'
+image: '[[dum-spiro-spero.jpg]]'
 primary_type: Album
 rating: 5
 nostalgia_rating: 5
 track_scores: 0.95
 package_score: 5
+created: '2025-12-02T21:37:19.564Z'
+modified: '2025-12-03T00:49:35.755Z'
 ---
 
 <script>
-	import WikiLink from '$lib/components/WikiLink.svelte';
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "Dum Spiro Spero",
+  "artist": "DIR EN GREY",
+  "release_date": "2011-08-01T00:00:00.000Z",
+  "musicbrainz_id": "4ead1ec8-65fd-4d44-b2c3-a8e1bdf5467a",
+  "image": "[[dum-spiro-spero.jpg]]",
+  "primary_type": "Album",
+  "rating": 5,
+  "nostalgia_rating": 5,
+  "track_scores": 0.95,
+  "package_score": 5,
+  "created": "2025-12-02T21:37:19.564Z",
+  "modified": "2025-12-03T00:49:35.755Z"
+};
+  const pagePath = 'music/albums/dir-en-grey-dum-spiro-spero';
 </script>
 
----
+<GeneralNote {frontmatter} {pagePath}>
 
 # DIR EN GREY - Dum Spiro Spero
 
 ---
 
-**Artist:** <WikiLink path="DIR EN GREY"  />
+**Artist:** [[DIR EN GREY]]
 **Release Date:** 2011-08-01
 
 ---
@@ -42,3 +59,6 @@ package_score: 5
 12. Hageshisa To, Kono Mune No Naka De Karamitsuita Shakunetsu No Yami (04:02)
 13. VANITAS (05:27)
 14. Ruten No Tou (04:27)
+
+
+</GeneralNote>

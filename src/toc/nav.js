@@ -24,7 +24,7 @@ export const navMain = [
         "isActive": false,
         "items": [
           {
-            "title": "Error Handling",
+            "title": "Rust Error Handling",
             "url": "/languages/rust/error-handling",
             "icon": null,
             "iconColor": null,

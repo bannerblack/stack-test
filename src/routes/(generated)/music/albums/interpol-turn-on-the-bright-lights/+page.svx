@@ -1,23 +1,38 @@
 ---
 title: Turn On the Bright Lights
 artist: Interpol
-release_date: 2002-08-19
+release_date: 2002-08-19T00:00:00.000Z
 musicbrainz_id: e7227840-5ef2-3813-af26-15dab34e1a51
 primary_type: Album
-rating: 0
+rating: 4
 nostalgia_rating: 3
 track_scores: 0.75
 package_score: 3
-image: "<WikiLink path="totbl.jpg"  />"
+image: '[[totbl.jpg]]'
+created: '2025-12-02T21:37:19.569Z'
+modified: '2025-12-03T03:19:39.100Z'
 ---
 
 <script>
-	import WikiLink from '$lib/components/WikiLink.svelte';
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "Turn On the Bright Lights",
+  "artist": "Interpol",
+  "release_date": "2002-08-19T00:00:00.000Z",
+  "musicbrainz_id": "e7227840-5ef2-3813-af26-15dab34e1a51",
+  "primary_type": "Album",
+  "rating": 4,
+  "nostalgia_rating": 3,
+  "track_scores": 0.75,
+  "package_score": 3,
+  "image": "[[totbl.jpg]]",
+  "created": "2025-12-02T21:37:19.569Z",
+  "modified": "2025-12-03T03:19:39.100Z"
+};
+  const pagePath = 'music/albums/interpol-turn-on-the-bright-lights';
 </script>
 
-![](../album_art/e7227840-5ef2-3813-af26-15dab34e1a51.jpg)
-
----
+<GeneralNote {frontmatter} {pagePath}>
 
 # Interpol - Turn On the Bright Lights
 
@@ -41,3 +56,6 @@ image: "<WikiLink path="totbl.jpg"  />"
 9. Roland (03:35)
 10. The New (06:07)
 11. Leif Erikson (04:00)
+
+
+</GeneralNote>

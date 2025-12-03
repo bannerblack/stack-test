@@ -10,9 +10,6 @@ nostalgia_rating: 5
 track_scores: 0.95
 package_score: 5
 ---
-
----
-
 # DIR EN GREY - Dum Spiro Spero
 
 ---

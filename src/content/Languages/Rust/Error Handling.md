@@ -1,3 +1,9 @@
+---
+title: Rust Error Handling
+description: An example of rust error handling using a custom method.
+---
+
+
 error.rs
 ```rust
 // Custom Error Handling

@@ -1,29 +1,44 @@
 ---
 title: UROBOROS
 artist: DIR EN GREY
-release_date: 2008-11-11
+release_date: 2008-11-11T00:00:00.000Z
 musicbrainz_id: f3a260b7-669f-3f0c-a8d6-21886fade241
 primary_type: Album
 rating: 5
 nostalgia_rating: 5
 track_scores: 0.91
 package_score: 5
-image: "<WikiLink path="uroboros.jpg"  />"
+image: '[[uroboros.jpg]]'
+created: '2025-12-02T21:37:19.566Z'
+modified: '2025-12-03T01:13:03.624Z'
 ---
 
 <script>
-	import WikiLink from '$lib/components/WikiLink.svelte';
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "UROBOROS",
+  "artist": "DIR EN GREY",
+  "release_date": "2008-11-11T00:00:00.000Z",
+  "musicbrainz_id": "f3a260b7-669f-3f0c-a8d6-21886fade241",
+  "primary_type": "Album",
+  "rating": 5,
+  "nostalgia_rating": 5,
+  "track_scores": 0.91,
+  "package_score": 5,
+  "image": "[[uroboros.jpg]]",
+  "created": "2025-12-02T21:37:19.566Z",
+  "modified": "2025-12-03T01:13:03.624Z"
+};
+  const pagePath = 'music/albums/dir-en-grey-uroboros';
 </script>
 
-![](../album_art/f3a260b7-669f-3f0c-a8d6-21886fade241.jpg)
-
----
+<GeneralNote {frontmatter} {pagePath}>
 
 # DIR EN GREY - UROBOROS
 
 ---
 
-**Artist:** <WikiLink path="DIR EN GREY"  />
+**Artist:** [[DIR EN GREY]]
 **Release Date:** 2008-11-11
 **Primary Type:** Album
 **Secondary Types:** None
@@ -47,3 +62,13 @@ image: "<WikiLink path="uroboros.jpg"  />"
 13. Gaika, chinmoku ga nemuru koro (04:23)
 14. Dozing green (04:07)
 15. Inconvenient ideal (04:23)
+
+### Info
+
+I was in *deep* as a Dir en grey fan when this album came out. A few of the songs were previewed early on a metal music show called Full Metal Jackie. I'll never forget sitting with my forehead down at my shitty little family computer in the room next to the garage, listening through my shitty speakers. I'm pretty sure is was Red Soil and Doukoku to Sarinu? Maybe? 
+
+This was only a few months after seeing them live for the first time! (The Rose Trims Again 2008)
+
+This tracklist includes `Bugaboo Respira`, which originally released on the vinyl only. It's a pity the normal album on Spotify has the English Glass Skin and Dozing Green.
+
+</GeneralNote>

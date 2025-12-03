@@ -2,55 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
-import { processWikilinks, addWikiLinkImport } from '../src/lib/utils/wikilink-processor.js';
+import { loadObsidianTypes } from '../src/lib/templates/processors/frontmatter-parser.js';
+import { copyImages } from '../src/lib/templates/processors/image-processor.js';
+import { generateTemplatedRoute, generateBaseFileRoute } from '../src/lib/templates/template-selector.js';
+import { convertToProperType } from '../src/lib/templates/processors/frontmatter-parser.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// Load Obsidian types if available
-let obsidianTypes = {};
-try {
-	const typesPath = path.join(__dirname, '..', 'src', 'content', '.obsidian', 'types.json');
-	if (fs.existsSync(typesPath)) {
-		const typesContent = fs.readFileSync(typesPath, 'utf-8');
-		const typesData = JSON.parse(typesContent);
-		obsidianTypes = typesData.types || {};
-	}
-} catch (e) {
-	console.warn('Could not load Obsidian types.json:', e.message);
-}
-
-// Convert value to proper type based on Obsidian types and smart defaults
-function convertToProperType(key, value) {
-	if (value == null) return value;
-
-	// Check if we have a specific type from Obsidian
-	const obsidianType = obsidianTypes[key];
-	if (obsidianType === 'text' || obsidianType === 'multitext') {
-		return String(value);
-	}
-	if (obsidianType === 'number') {
-		const num = Number(value);
-		return isNaN(num) ? value : num;
-	}
-
-	// Smart defaults: only convert to number if it looks like a number
-	if (typeof value === 'string') {
-		// If it's a string that looks like a number
-		if (/^-?\d+$/.test(value.trim())) {
-			// Integer - convert to number
-			return parseInt(value, 10);
-		} else if (/^-?\d+\.\d+$/.test(value.trim())) {
-			// Float - convert to number
-			return parseFloat(value);
-		}
-		// Keep as string if it doesn't look like a number
-		return value;
-	}
-
-	// Return as-is for other types
-	return value;
-}
 
 const CONTENT_DIR = path.join(__dirname, '..', 'src', 'content');
 const ROUTES_DIR = path.join(__dirname, '..', 'src', 'routes', '(generated)');
@@ -58,49 +16,12 @@ const TOC_FILE = path.join(__dirname, '..', 'src', 'toc', 'toc.js');
 const NAV_FILE = path.join(__dirname, '..', 'src', 'toc', 'nav.js');
 const STATIC_DIR = path.join(__dirname, '..', 'static');
 
-// Image extensions to copy
+// Load Obsidian types if available
+const obsidianTypes = loadObsidianTypes(CONTENT_DIR, fs, path);
+
+// Image extensions to check
 const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp'];
 
-// Copy image files to static directory and return set of copied files
-function copyImages(sourceDir, targetDir = STATIC_DIR) {
-	if (!fs.existsSync(targetDir)) {
-		fs.mkdirSync(targetDir, { recursive: true });
-	}
-
-	const copiedImages = new Set();
-
-	function copyImagesRecursively(dir) {
-		const entries = fs.readdirSync(dir, { withFileTypes: true });
-
-		for (const entry of entries) {
-			const fullPath = path.join(dir, entry.name);
-
-			if (entry.isDirectory()) {
-				// Skip .obsidian and other hidden directories
-				if (entry.name.startsWith('.')) {
-					continue;
-				}
-				copyImagesRecursively(fullPath);
-			} else if (entry.isFile()) {
-				const ext = path.extname(entry.name).toLowerCase();
-				if (IMAGE_EXTENSIONS.includes(ext)) {
-					const targetPath = path.join(targetDir, entry.name);
-					copiedImages.add(entry.name);
-
-					// Only copy if file doesn't exist or is newer
-					if (!fs.existsSync(targetPath) ||
-						fs.statSync(fullPath).mtime > fs.statSync(targetPath).mtime) {
-						fs.copyFileSync(fullPath, targetPath);
-						console.log(`📸 Copied image: ${entry.name}`);
-					}
-				}
-			}
-		}
-	}
-
-	copyImagesRecursively(sourceDir);
-	return copiedImages;
-}
 const IGNORE_FILE = path.join(__dirname, '..', '.contentignore');
 
 // Create a URL-safe slug from a string
@@ -168,7 +89,7 @@ function parseFrontmatter(content, isBaseFile = false) {
 			const metadata = yaml.load(content) || {};
 			// Convert values to proper types
 			for (const [key, value] of Object.entries(metadata)) {
-				metadata[key] = convertToProperType(key, value);
+				metadata[key] = convertToProperType(key, value, obsidianTypes);
 			}
 			return { metadata, content: '' };
 		} catch (e) {
@@ -192,7 +113,7 @@ function parseFrontmatter(content, isBaseFile = false) {
 
 		// Convert values to proper types
 		for (const [key, value] of Object.entries(metadata)) {
-			metadata[key] = convertToProperType(key, value);
+			metadata[key] = convertToProperType(key, value, obsidianTypes);
 		}
 	} catch (e) {
 		console.warn('Failed to parse YAML frontmatter:', e.message);
@@ -313,37 +234,6 @@ function buildRoutePath(tree, currentPath = '') {
 }
 
 // Generate markdown content for .base files
-function generateBaseFileContent(route) {
-	const title = route.title || 'Data Table';
-	const views = route.views || [];
-	const pagePath = route.slug;
-
-	let content = `---\ntitle: ${title}\n`;
-
-	// Add any other metadata except views (views are in toc.js)
-	const excludeKeys = ['path', 'title', 'views', 'slug', 'key'];
-	for (const [key, value] of Object.entries(route)) {
-		if (!excludeKeys.includes(key) && typeof value !== 'object') {
-			content += `${key}: ${value}\n`;
-		}
-	}
-
-	content += `---\n\n# ${title}\n\n`;
-
-	if (views.length === 0) {
-		content += `No views defined in this database.\n`;
-		return content;
-	}
-
-	// Add script import
-	content += `<script>\n  import AutoDataTable from '$lib/components/AutoDataTable.svelte';\n</script>\n\n`;
-
-	// Add single AutoDataTable component that handles view switching
-	content += `<AutoDataTable pagePath="${pagePath}" />\n`;
-
-	return content;
-}
-
 // Clean up all existing generated routes
 function cleanupGeneratedRoutes() {
 	if (fs.existsSync(ROUTES_DIR)) {
@@ -427,25 +317,21 @@ function generateRoutes(tree) {
 			fs.mkdirSync(routePath, { recursive: true });
 		}
 
-		// Read the original markdown content and copy it directly
+		// Read the original content
 		const contentPath = path.join(CONTENT_DIR, route.path);
 
 		let pageContent;
 		if (route.path.endsWith('.base')) {
-			// Generate content for .base files
-			pageContent = generateBaseFileContent(route);
+			// Use new template system for .base files
+			pageContent = generateBaseFileRoute(route);
 		} else {
-			// Copy markdown content directly for .md/.svx files
-			pageContent = fs.readFileSync(contentPath, 'utf-8');
-
-			// Process wikilinks and embeds for .md/.svx files
-			if (route.path.endsWith('.md') || route.path.endsWith('.svx')) {
-				pageContent = processWikilinks(pageContent);
-				pageContent = addWikiLinkImport(pageContent);
-			}
+			// Use new template system for .md/.svx files
+			const rawContent = fs.readFileSync(contentPath, 'utf-8');
+			const fileStats = fs.statSync(contentPath);
+			pageContent = generateTemplatedRoute(rawContent, route.path, route.slug, obsidianTypes, fileStats);
 		}
 
-		// Write the content directly into +page.svx (self-contained copy)
+		// Write the content to +page.svx
 		const pagePath = path.join(routePath, '+page.svx');
 		fs.writeFileSync(pagePath, pageContent, 'utf-8');
 	}
@@ -913,7 +799,7 @@ function main() {
 
 	// STEP 4: Copy images and clean up orphaned ones
 	console.log('📸 Copying images to static directory...');
-	const copiedImages = copyImages(CONTENT_DIR);
+	const copiedImages = copyImages(CONTENT_DIR, STATIC_DIR, fs, path);
 
 	// Collect image references from content to identify orphans
 	const referencedImages = collectImageReferences(CONTENT_DIR);

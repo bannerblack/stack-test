@@ -1,3 +1,23 @@
+---
+title: Rust Error Handling
+description: An example of rust error handling using a custom method.
+created: '2025-12-02T21:50:12.653Z'
+modified: '2025-12-03T00:36:57.986Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "Rust Error Handling",
+  "description": "An example of rust error handling using a custom method.",
+  "created": "2025-12-02T21:50:12.653Z",
+  "modified": "2025-12-03T00:36:57.986Z"
+};
+  const pagePath = 'languages/rust/error-handling';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
 error.rs
 ```rust
 // Custom Error Handling
@@ -57,3 +77,5 @@ fn main() -> Result<(), MyError> {
     }
 }
 ```
+
+</GeneralNote>

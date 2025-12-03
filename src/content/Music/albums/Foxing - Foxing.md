@@ -4,17 +4,12 @@ artist: Foxing
 release_date: 2024-09-13
 musicbrainz_id: e6c562a8-b3ae-4a25-942a-2e35f8137a5e
 primary_type: Album
-rating: 0
+rating: 4.5
 nostalgia_rating: 5
 track_scores: 0.7
 package_score: 5
 image: "[[foxing.jpg]]"
 ---
-
-![](../album_art/e6c562a8-b3ae-4a25-942a-2e35f8137a5e.jpg)
-
----
-
 # Foxing - Foxing
 
 ---

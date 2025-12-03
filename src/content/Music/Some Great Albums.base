@@ -23,6 +23,7 @@ views:
       - package_score
       - nostalgia_rating
       - rating
+      - album
     sort:
       - property: rating
         direction: ASC
@@ -30,3 +31,6 @@ views:
         direction: DESC
       - property: title
         direction: DESC
+    columnSize:
+      note.artist: 125
+      note.title: 211

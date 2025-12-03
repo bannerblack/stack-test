@@ -10,19 +10,14 @@ track_scores: 0.66
 package_score: 5
 image: "[[snw.jpg]]"
 ---
-
-![](../album_art/82be2ea8-9c50-3024-a1be-cf35c2e5fd69.jpg)
-
----
-
 # Deftones - Saturday Night Wrist
 
 ---
 
-**Artist:** Deftones
-**Release Date:** 2005
-**Primary Type:** Album
-**Secondary Types:** None
+**Artist:** Deftones    
+**Release Date:** 2005    
+**Primary Type:** Album    
+**Secondary Types:** None    
 
 ---
 

@@ -2,12 +2,110 @@
 title: Some Great Albums
 __hasExtension: false
 icon: database
+views:
+  - type: cards
+    name: Albums
+    filters:
+      and:
+        - file.path.startsWith("Music")
+        - '!image.isEmpty()'
+    order:
+      - file.name
+      - artist
+      - title
+      - release_date
+      - track_scores
+      - rating
+    image: image
+  - type: table
+    name: Sorted
+    order:
+      - artist
+      - title
+      - release_date
+      - track_scores
+      - package_score
+      - nostalgia_rating
+      - rating
+      - album
+    sort:
+      - property: rating
+        direction: ASC
+      - property: artist
+        direction: DESC
+      - property: title
+        direction: DESC
+    columnSize:
+      note.artist: 125
+      note.title: 211
 ---
 
-# Some Great Albums
-
 <script>
-  import AutoDataTable from '$lib/components/AutoDataTable.svelte';
+  import TableBase from '$lib/templates/TableBase.svelte';
+
+  const frontmatter = {
+  "title": "Some Great Albums",
+  "__hasExtension": false,
+  "icon": "database",
+  "views": [
+    {
+      "type": "cards",
+      "name": "Albums",
+      "filters": {
+        "and": [
+          "file.path.startsWith(\"Music\")",
+          "!image.isEmpty()"
+        ]
+      },
+      "order": [
+        "file.name",
+        "artist",
+        "title",
+        "release_date",
+        "track_scores",
+        "rating"
+      ],
+      "image": "image"
+    },
+    {
+      "type": "table",
+      "name": "Sorted",
+      "order": [
+        "artist",
+        "title",
+        "release_date",
+        "track_scores",
+        "package_score",
+        "nostalgia_rating",
+        "rating",
+        "album"
+      ],
+      "sort": [
+        {
+          "property": "rating",
+          "direction": "ASC"
+        },
+        {
+          "property": "artist",
+          "direction": "DESC"
+        },
+        {
+          "property": "title",
+          "direction": "DESC"
+        }
+      ],
+      "columnSize": {
+        "note.artist": 125,
+        "note.title": 211
+      }
+    }
+  ]
+};
+  const pagePath = 'music/some-great-albums';
 </script>
 
-<AutoDataTable pagePath="music/some-great-albums" />
+<TableBase
+  {frontmatter}
+  {pagePath}
+  content=""
+/>

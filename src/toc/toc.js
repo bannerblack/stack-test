@@ -3,8 +3,9 @@ export const toc = {
     "rust": {
       "error-handling": {
         "path": "Languages/Rust/Error Handling.md",
-        "title": "Error Handling",
-        "__hasExtension": false
+        "title": "Rust Error Handling",
+        "__hasExtension": false,
+        "description": "An example of rust error handling using a custom method."
       },
       "_meta": {
         "__originalName": "Rust"
@@ -66,7 +67,7 @@ export const toc = {
         "release_date": "2024-09-13T00:00:00.000Z",
         "musicbrainz_id": "e6c562a8-b3ae-4a25-942a-2e35f8137a5e",
         "primary_type": "Album",
-        "rating": 0,
+        "rating": 4.5,
         "nostalgia_rating": 5,
         "track_scores": 0.7,
         "package_score": 5,
@@ -80,7 +81,7 @@ export const toc = {
         "release_date": "2002-08-19T00:00:00.000Z",
         "musicbrainz_id": "e7227840-5ef2-3813-af26-15dab34e1a51",
         "primary_type": "Album",
-        "rating": 0,
+        "rating": 4,
         "nostalgia_rating": 3,
         "track_scores": 0.75,
         "package_score": 3,
@@ -94,7 +95,7 @@ export const toc = {
         "release_date": "2017-04-14T00:00:00.000Z",
         "musicbrainz_id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
         "primary_type": "Album",
-        "rating": 0,
+        "rating": -1,
         "nostalgia_rating": 4,
         "track_scores": 0.8,
         "package_score": 4,
@@ -139,7 +140,8 @@ export const toc = {
             "track_scores",
             "package_score",
             "nostalgia_rating",
-            "rating"
+            "rating",
+            "album"
           ],
           "sort": [
             {
@@ -154,7 +156,11 @@ export const toc = {
               "property": "title",
               "direction": "DESC"
             }
-          ]
+          ],
+          "columnSize": {
+            "note.artist": 125,
+            "note.title": 211
+          }
         }
       ]
     },

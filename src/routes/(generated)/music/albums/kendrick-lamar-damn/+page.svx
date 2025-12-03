@@ -1,23 +1,38 @@
 ---
 title: DAMN.
 artist: Kendrick Lamar
-release_date: 2017-04-14
+release_date: 2017-04-14T00:00:00.000Z
 musicbrainz_id: b88655ba-7469-48b8-a296-b9011ab73ef3
 primary_type: Album
-rating: 0
+rating: -1
 nostalgia_rating: 4
 track_scores: 0.8
 package_score: 4
-image: "<WikiLink path="damn.jpg"  />"
+image: '[[damn.jpg]]'
+created: '2025-12-02T21:37:19.571Z'
+modified: '2025-12-03T03:29:52.007Z'
 ---
 
 <script>
-	import WikiLink from '$lib/components/WikiLink.svelte';
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "title": "DAMN.",
+  "artist": "Kendrick Lamar",
+  "release_date": "2017-04-14T00:00:00.000Z",
+  "musicbrainz_id": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+  "primary_type": "Album",
+  "rating": -1,
+  "nostalgia_rating": 4,
+  "track_scores": 0.8,
+  "package_score": 4,
+  "image": "[[damn.jpg]]",
+  "created": "2025-12-02T21:37:19.571Z",
+  "modified": "2025-12-03T03:29:52.007Z"
+};
+  const pagePath = 'music/albums/kendrick-lamar-damn';
 </script>
 
-![](../album_art/b88655ba-7469-48b8-a296-b9011ab73ef3.jpg)
-
----
+<GeneralNote {frontmatter} {pagePath}>
 
 # Kendrick Lamar - DAMN.
 
@@ -44,3 +59,6 @@ image: "<WikiLink path="damn.jpg"  />"
 12. FEAR. (06:54)
 13. GOD. (04:09)
 14. DUCKWORTH. (04:08)
+
+
+</GeneralNote>
