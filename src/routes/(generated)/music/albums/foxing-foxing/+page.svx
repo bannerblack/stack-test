@@ -38,7 +38,7 @@ modified: '2025-12-03T03:30:14.879Z'
 
 ---
 
-**Artist:** Foxing
+**Artist:** Foxing  
 **Release Date:** 2024-09-13
 
 ---

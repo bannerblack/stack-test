@@ -38,9 +38,9 @@ modified: '2025-12-03T03:31:04.143Z'
 
 ---
 
-**Artist:** Deftones    
-**Release Date:** 2005    
-**Primary Type:** Album    
+**Artist:** Deftones      
+**Release Date:** 2005      
+**Primary Type:** Album      
 **Secondary Types:** None    
 
 ---

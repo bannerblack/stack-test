@@ -1,0 +1,24 @@
+---
+created: '2025-12-06T02:14:36.064Z'
+modified: '2025-12-06T03:45:59.469Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  import WikiLink from '$lib/components/WikiLink.svelte';
+  const frontmatter = {
+  "created": "2025-12-06T02:14:36.064Z",
+  "modified": "2025-12-06T03:45:59.469Z"
+};
+  const pagePath = '2025-12-05';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+<WikiLink path="IN THE BEGINNING.pdf" />
+
+<WikiLink path="screenshot.png" /><br>
+<WikiLink path="_nichijou__.pdf" isEmbed={true} />
+
+
+</GeneralNote>

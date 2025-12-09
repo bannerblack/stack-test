@@ -4,7 +4,7 @@
  */
 
 import { parseFrontmatter, serializeFrontmatter } from './processors/frontmatter-parser.js';
-import { processNoteContent, determineNoteType } from './processors/content-processor.js';
+import { processContent, determineNoteType } from './processors/content-processor.js';
 import { extractImageFilename } from './processors/image-processor.js';
 
 /**
@@ -69,9 +69,18 @@ export function generateTemplatedRoute(rawContent, filePath, pagePath, obsidianT
         throw new Error(`Unknown template type: ${templateType}`);
     }
 
-    // Process content (skip wikilinks for general template - mdsvex will handle them)
-    const processOptions = templateType === 'general' ? { processWikilinks: false } : {};
-    const processedContent = processNoteContent(content, frontmatter, processOptions);
+    // Process content based on template type
+    // All templates: Process all wikilinks, tokens, images, and embeds during generation
+    // This ensures wikilinks are converted to WikiLink components before mdsvex runs
+    const processOptions = {}; // Process everything for all templates
+    let processedContent = processContent(content, frontmatter, processOptions);
+
+    // Check if WikiLink components are used and remove any script tags added by processors
+    const hasWikiLinks = processedContent.includes('<WikiLink');
+    if (hasWikiLinks) {
+        // Remove any script tags that were added for WikiLink imports (they'll be added to the outer script)
+        processedContent = processedContent.replace(/<script[^>]*>\s*import WikiLink from ['"].*?['"];\s*<\/script>\s*/g, '');
+    }
 
     // Generate the .svx file content
     let svxContent = '';
@@ -82,6 +91,9 @@ export function generateTemplatedRoute(rawContent, filePath, pagePath, obsidianT
     // Add script with imports
     svxContent += `<script>\n`;
     svxContent += `  import ${template.component} from '$lib/templates/${template.component}.svelte';\n`;
+    if (hasWikiLinks) {
+        svxContent += `  import WikiLink from '$lib/components/WikiLink.svelte';\n`;
+    }
     svxContent += `  const frontmatter = ${JSON.stringify(frontmatter, null, 2)};\n`;
     svxContent += `  const pagePath = '${pagePath.replace(/'/g, "\\'")}';\n`;
     svxContent += `</script>\n\n`;

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WikiLink Test</title>
+</head>
+<body>
+    <h1>WikiLink Resolution Test</h1>
+    
+    <script type="module">
+        // Simulate the TOC structure
+        const toc = {
+            "rust": {
+                "moc": {
+                    "path": "Rust/MOC.md",
+                    "title": "MOC",
+                    "__hasExtension": false
+                },
+                "_meta": {
+                    "__originalName": "Rust"
+                }
+            },
+            "music": {
+                "some-great-albums": {
+                    "path": "Music/Some Great Albums.base",
+                    "title": "Some Great Albums",
+                    "__hasExtension": false
+                },
+                "_meta": {
+                    "__originalName": "Music"
+                }
+            }
+        };
+
+        // Simulate findFile function
+        function findFile(searchPath) {
+            const hasPath = searchPath.includes('/');
+
+            function searchNode(node, currentPath = '') {
+                for (const [key, value] of Object.entries(node)) {
+                    if (key === '_meta') continue;
+
+                    const newPath = currentPath ? `${currentPath}/${key}` : key;
+
+                    if (value.path) {
+                        if (hasPath) {
+                            // Exact path match
+                            if (
+                                value.path === searchPath ||
+                                value.path === `${searchPath}.md` ||
+                                value.path === `${searchPath}.svx` ||
+                                value.path === `${searchPath}.base` ||
+                                value.path.endsWith(`/${searchPath}.md`) ||
+                                value.path.endsWith(`/${searchPath}.svx`) ||
+                                value.path.endsWith(`/${searchPath}.base`)
+                            ) {
+                                return {
+                                    file: value,
+                                    url: `/${newPath}`
+                                };
+                            }
+                        } else {
+                            // Name-only match
+                            const fileName = value.path
+                                .split('/')
+                                .pop()
+                                .replace(/\.(md|svx|base)$/, '');
+                            const searchFileName = searchPath.replace(/\.(md|svx|base)$/, '');
+                            if (fileName === searchFileName) {
+                                return {
+                                    file: value,
+                                    url: `/${newPath}`
+                                };
+                            }
+                        }
+                    } else {
+                        // This is a folder - recurse
+                        const result = searchNode(value, newPath);
+                        if (result) {
+                            return result;
+                        }
+                    }
+                }
+                return null;
+            }
+
+            return searchNode(toc);
+        }
+
+        // Test cases
+        const tests = [
+            { input: "MOC", expected: "/rust/moc" },
+            { input: "Some Great Albums.base", expected: "/music/some-great-albums" },
+            { input: "Error Handling", expected: null }
+        ];
+
+        console.log("=== WikiLink Resolution Tests ===\n");
+        
+        let passed = 0;
+        let failed = 0;
+
+        tests.forEach(test => {
+            const result = findFile(test.input);
+            const url = result?.url || null;
+            const success = url === test.expected;
+            
+            if (success) {
+                passed++;
+                console.log(`✅ PASS: "${test.input}" → ${url}`);
+            } else {
+                failed++;
+                console.log(`❌ FAIL: "${test.input}"`);
+                console.log(`   Expected: ${test.expected}`);
+                console.log(`   Got: ${url}`);
+            }
+        });
+
+        console.log(`\n=== Results: ${passed} passed, ${failed} failed ===`);
+
+        // Display results in the page
+        document.body.innerHTML += `
+            <div style="margin-top: 20px; font-family: monospace;">
+                <h2>Test Results</h2>
+                <pre>Tests passed: ${passed}/${tests.length}</pre>
+            </div>
+        `;
+    </script>
+</body>
+</html>

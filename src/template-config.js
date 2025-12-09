@@ -4,5 +4,6 @@ export const templateConfig = {
     basic_note_music_metadata: true,
     colored_headings: false,
     constrain_cover_image: true,
-    max_cover_image_width: '50%'
+    max_cover_image_width: '50%',
+    show_dead_link_brackets: true
 }

@@ -1,13 +1,14 @@
 ---
 created: '2025-12-03T04:37:17.381Z'
-modified: '2025-12-03T04:56:21.448Z'
+modified: '2025-12-09T03:50:50.393Z'
 ---
 
 <script>
   import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  import WikiLink from '$lib/components/WikiLink.svelte';
   const frontmatter = {
   "created": "2025-12-03T04:37:17.381Z",
-  "modified": "2025-12-03T04:56:21.448Z"
+  "modified": "2025-12-09T03:50:50.393Z"
 };
   const pagePath = 'documentation/configuration';
 </script>
@@ -28,6 +29,10 @@ export const templateConfig = {
 ```
 
 This config file governs settings/choices you can make about the way your notes are displayed.
+
+Advancing the world by supporting scientists and people that like are once in a generational talents and will improve everyone's <WikiLink path="living conditions" />. I feel like I am a seemingly necessary individual.
+
+<WikiLink path="Sveltekit MOC" />
 
 1. `basic_note_cover_image`
 	- `true` : displays a cover image on the top of a note if the note contains an `image` property set to an existing photo location

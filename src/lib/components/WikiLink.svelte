@@ -1,22 +1,12 @@
+<!-- 
+Links to other wiki pages or embeds them directly. 
+-->
 <script>
 	import { toc } from '../../toc/toc.js';
+	import { base } from '$app/paths';
+	import { templateConfig } from '@template-config';
 
 	let { path, alias, isEmbed = false } = $props();
-
-	// Dynamic component loading
-	let ComponentPromise = $state(null);
-
-	function loadComponent(targetPath) {
-		if (!targetPath) return null;
-
-		try {
-			// Dynamically import the component based on the target path
-			return import(`../../routes/(generated)/${targetPath}/+page.svx`);
-		} catch (error) {
-			console.warn(`Could not load component for path: ${targetPath}`, error);
-			return null;
-		}
-	}
 
 	// Find the target file in the TOC
 	function findFile(searchPath) {
@@ -36,8 +26,10 @@
 							value.path === searchPath ||
 							value.path === `${searchPath}.md` ||
 							value.path === `${searchPath}.svx` ||
+							value.path === `${searchPath}.base` ||
 							value.path.endsWith(`/${searchPath}.md`) ||
-							value.path.endsWith(`/${searchPath}.svx`)
+							value.path.endsWith(`/${searchPath}.svx`) ||
+							value.path.endsWith(`/${searchPath}.base`)
 						) {
 							return {
 								file: value,
@@ -50,7 +42,8 @@
 							.split('/')
 							.pop()
 							.replace(/\.(md|svx|base)$/, '');
-						if (fileName === searchPath) {
+						const searchFileName = searchPath.replace(/\.(md|svx|base)$/, '');
+						if (fileName === searchFileName) {
 							return {
 								file: value,
 								url: `/${newPath}`
@@ -73,17 +66,27 @@
 
 	const target = findFile(path);
 	const displayText = alias || target?.file?.title || path;
-	const url = target?.url || '#';
+	const url = target?.url ? `${base}${target.url}` : '#';
 
-	// Load component dynamically when in embed mode
-	$effect(() => {
+	// Debug logging for development
+	if (!target && typeof console !== 'undefined') {
+		console.warn(`[WikiLink] Could not resolve path: "${path}"`);
+	}
+
+	// Load component dynamically when in embed mode using $derived
+	const ComponentPromise = $derived.by(() => {
 		if (isEmbed && target) {
 			// Extract the path from the URL by removing the leading slash
 			const componentPath = url.startsWith('/') ? url.slice(1) : url;
-			ComponentPromise = loadComponent(componentPath);
-		} else {
-			ComponentPromise = null;
+
+			try {
+				return import(`../../routes/(generated)/${componentPath}/+page.svx`);
+			} catch (error) {
+				console.warn(`Could not load component for path: ${componentPath}`, error);
+				return null;
+			}
 		}
+		return null;
 	});
 </script>
 
@@ -130,9 +133,32 @@
 			{/if}
 		</div>
 	</div>
+{:else if isEmbed && !target}
+	<!-- Unsupported embed - show message -->
+	<div class="border rounded-md my-4 w-[90%] mx-auto bg-muted/20 border-chart-3">
+		<div class="flex items-center gap-2 px-4 py-1 bg-chart-3/10 rounded-md">
+			<span class="text-xs mx-auto text-chart-3/85"
+				>UNSUPPORTED EMBED : <span class="text-xs">{path}</span></span
+			>
+		</div>
+	</div>
 {:else}
 	<!-- Link mode - render as clickable link -->
-	<a href={url} class="text-primary hover:underline">
-		{displayText}
-	</a>
+	{#if target}
+		<a href={url} class="text-primary hover:underline">
+			{displayText}
+		</a>
+	{:else}
+		<!-- Unresolved link - show with warning styling -->
+		<span
+			class="text-muted-foreground bg-card pt-0 pb-1 pl-1 pr-1 rounded w-fit"
+			title="Unresolved wikilink: {path}"
+		>
+			{#if templateConfig.show_dead_link_brackets}
+				<span>[[</span>{displayText}<span>]]</span>
+			{:else}
+				{displayText}
+			{/if}
+		</span>
+	{/if}
 {/if}

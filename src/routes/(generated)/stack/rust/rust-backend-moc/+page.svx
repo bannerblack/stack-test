@@ -1,0 +1,22 @@
+---
+created: '2025-11-30T21:41:08.353Z'
+modified: '2025-12-09T03:34:51.261Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  import WikiLink from '$lib/components/WikiLink.svelte';
+  const frontmatter = {
+  "created": "2025-11-30T21:41:08.353Z",
+  "modified": "2025-12-09T03:34:51.261Z"
+};
+  const pagePath = 'stack/rust/rust-backend-moc';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+<WikiLink path="Rust" />
+
+
+
+</GeneralNote>

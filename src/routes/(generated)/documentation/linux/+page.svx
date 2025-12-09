@@ -1,0 +1,22 @@
+---
+created: '2025-11-30T21:41:08.348Z'
+modified: '2025-11-30T20:55:22.348Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "created": "2025-11-30T21:41:08.348Z",
+  "modified": "2025-11-30T20:55:22.348Z"
+};
+  const pagePath = 'documentation/linux';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+
+# General
+
+[The Linux Documentation Project](https://tldp.org/guides.html)
+
+</GeneralNote>

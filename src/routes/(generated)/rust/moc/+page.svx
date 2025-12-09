@@ -1,0 +1,24 @@
+---
+created: '2025-11-30T21:41:08.351Z'
+modified: '2025-11-30T21:47:41.669Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  import WikiLink from '$lib/components/WikiLink.svelte';
+  const frontmatter = {
+  "created": "2025-11-30T21:41:08.351Z",
+  "modified": "2025-11-30T21:47:41.669Z"
+};
+  const pagePath = 'rust/moc';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+This is some shit about Rust!
+
+# Patterns
+
+<WikiLink path="Error Handling" />
+
+</GeneralNote>

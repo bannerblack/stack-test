@@ -1,6 +1,6 @@
 import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-static';
-import { processWikilinks, addWikiLinkImport } from './src/lib/utils/wikilink-processor.js';
+import { processTextWikilinks, processEmbedWikilinks } from './src/lib/templates/processors/content-processor.js';
 
 const dev = process.argv.includes('dev');
 
@@ -25,6 +25,10 @@ const config = {
 				}
 				throw new Error(message);
 			}
+		},
+		alias: {
+			"@template-config": "src/template-config.js",
+			"@layout-config": "src/layout-config.js"
 		}
 	},
 	preprocess: [
@@ -38,9 +42,9 @@ const config = {
 				// Only process .svx, .md, and .base files
 				if (filename && (filename.endsWith('.svx') || filename.endsWith('.md') || filename.endsWith('.base'))) {
 					// Process wikilinks and embeds for non-generated files
-					let processed = processWikilinks(content);
-					// Add WikiLink import if needed
-					processed = addWikiLinkImport(processed);
+					let processed = content;
+					processed = processTextWikilinks(processed);
+					processed = processEmbedWikilinks(processed);
 					return { code: processed };
 				}
 				return { code: content };

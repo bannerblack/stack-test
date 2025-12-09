@@ -1,0 +1,245 @@
+/**
+ * File writers for generated outputs
+ * Handles writing toc.js, nav.js, and map route
+ */
+
+import fs from 'fs';
+import path from 'path';
+import {
+    buildNavigation,
+    collectPinnedNotes,
+    collectPageNotes,
+    collectIcons,
+    generateIconCode
+} from './nav-builder.js';
+
+/**
+ * Write toc.js file
+ * @param {Object} tree - Content tree
+ * @param {string} tocPath - Path to toc.js file
+ */
+export function writeTocFile(tree, tocPath) {
+    const tocContent = `export const toc = ${JSON.stringify(tree, null, 2)};
+`;
+    fs.writeFileSync(tocPath, tocContent, 'utf-8');
+}
+
+/**
+ * Write nav.js file with navigation data
+ * @param {Object} tree - Content tree
+ * @param {string} navPath - Path to nav.js file
+ */
+export function writeNavFile(tree, navPath) {
+    const navMain = buildNavigation(tree);
+    const pinnedNotes = collectPinnedNotes(tree);
+    const pageNotes = collectPageNotes(tree);
+
+    // Collect all icons
+    const icons = collectIcons(navMain);
+    collectIcons(pinnedNotes, icons);
+    collectIcons(pageNotes, icons);
+
+    // Generate icon code
+    const { imports, map } = generateIconCode(icons);
+
+    const navContent = `// Auto-generated navigation data for app-sidebar
+        ${imports}
+
+        // Map of icon names to components
+        export const iconMap = {
+        ${map}
+        };
+
+        export const navMain = ${JSON.stringify(navMain, null, 2)};
+
+        export const pinnedNotes = ${JSON.stringify(pinnedNotes, null, 2)};
+
+        export const pageNotes = ${JSON.stringify(pageNotes, null, 2)};
+        `;
+    fs.writeFileSync(navPath, navContent, 'utf-8');
+}
+
+/**
+ * Generate site map route
+ * @param {Object} tree - Content tree
+ * @param {string} routesDir - Routes directory
+ */
+export function writeMapRoute(tree, routesDir) {
+    console.log('🗺️  Generating map route...');
+
+    const mapPath = path.join(routesDir, 'map');
+    if (!fs.existsSync(mapPath)) {
+        fs.mkdirSync(mapPath, { recursive: true });
+    }
+
+    const mapContent = generateMapContent();
+    const pageFilePath = path.join(mapPath, '+page.svx');
+    fs.writeFileSync(pageFilePath, mapContent, 'utf-8');
+
+    console.log('  ✓ Created /map route with complete site overview');
+}
+
+/**
+ * Generate map page content
+ * @returns {string} Map page content
+ */
+function generateMapContent() {
+    return `---
+title: Site Map
+description: Complete overview of all notes and content in this knowledge base
+---
+
+<script>
+	import { toc } from '$lib/../toc/toc.js';
+	import { processNavLink } from '$lib/utils/path-utils.js';
+	import { page } from '$app/stores';
+	import MapIcon from '@lucide/svelte/icons/map';
+	import FolderIcon from '@lucide/svelte/icons/folder';
+	import FileIcon from '@lucide/svelte/icons/file';
+	import DatabaseIcon from '@lucide/svelte/icons/database';
+	import { Badge } from '$lib/components/ui/badge/index.js';
+	import * as Card from '$lib/components/ui/card/index.js';
+	
+	const currentPath = $derived($page.url.pathname);
+	
+	function getMapLink(path) {
+		return processNavLink(\`/\${path}\`, currentPath);
+	}
+	
+	function countNotes(node) {
+		let count = 0;
+		for (const [key, value] of Object.entries(node)) {
+			if (key === '_meta') continue;
+			if (value.path) {
+				count++;
+			} else {
+				count += countNotes(value);
+			}
+		}
+		return count;
+	}
+	
+	function getFolderMeta(value) {
+		return value._meta || {};
+	}
+	
+	function sortEntries(entries) {
+		return entries.sort(([aKey, aValue], [bKey, bValue]) => {
+			if (aKey === '_meta' || bKey === '_meta') return 0;
+			
+			const aIsFolder = !aValue.path;
+			const bIsFolder = !bValue.path;
+			
+			if (aIsFolder && !bIsFolder) return -1;
+			if (!aIsFolder && bIsFolder) return 1;
+			
+			return aKey.localeCompare(bKey);
+		});
+	}
+</script>
+
+# {title}
+
+<div class="text-muted-foreground mb-6">
+	Explore the complete structure of this knowledge base. Click any item to navigate directly to that content.
+</div>
+
+<div class="mb-8">
+	<Card.Root>
+		<Card.Header>
+			<Card.Title class="flex items-center gap-2">
+				<MapIcon class="h-5 w-5" />
+				Knowledge Base Overview
+			</Card.Title>
+			<Card.Description>
+				Total notes: <Badge variant="secondary">{countNotes(toc)}</Badge>
+			</Card.Description>
+		</Card.Header>
+	</Card.Root>
+</div>
+
+<div class="space-y-6">
+	{#each sortEntries(Object.entries(toc)) as [key, value]}
+		{#if key !== '_meta'}
+			{#if !value.path}
+				{@const folderMeta = getFolderMeta(value)}
+				{@const folderTitle = folderMeta.title || folderMeta.__originalName || key}
+				{@const noteCount = countNotes(value)}
+				
+				<Card.Root class="border-l-4 border-l-primary">
+					<Card.Header>
+						<Card.Title class="flex items-center gap-2 text-lg">
+							<FolderIcon class="h-5 w-5" />
+							<a href={getMapLink(key)} class="hover:underline">{folderTitle}</a>
+							<Badge variant="outline">{noteCount} notes</Badge>
+						</Card.Title>
+						{#if folderMeta.description}
+							<Card.Description>{folderMeta.description}</Card.Description>
+						{/if}
+					</Card.Header>
+					<Card.Content>
+						<div class="grid gap-2">
+							{#each sortEntries(Object.entries(value)).slice(0, 8) as [subKey, subValue]}
+								{#if subKey !== '_meta'}
+									{#if !subValue.path}
+										{@const subFolderMeta = getFolderMeta(subValue)}
+										{@const subFolderTitle = subFolderMeta.title || subFolderMeta.__originalName || subKey}
+										{@const subNoteCount = countNotes(subValue)}
+										
+										<div class="flex items-center gap-2 p-2 rounded-md bg-muted/30">
+											<FolderIcon class="h-4 w-4" />
+											<a href={getMapLink(key + '/' + subKey)} class="hover:underline font-medium flex-1">{subFolderTitle}</a>
+											<Badge variant="secondary" class="text-xs">{subNoteCount}</Badge>
+										</div>
+									{:else}
+										<div class="flex items-center gap-2 text-sm">
+											{#if subValue.path?.endsWith('.base')}
+												<DatabaseIcon class="h-4 w-4" />
+											{:else}
+												<FileIcon class="h-4 w-4" />
+											{/if}
+											<a href={getMapLink(key + '/' + subKey)} class="hover:underline">{subValue.title || subKey}</a>
+											{#if subValue.path?.endsWith('.base')}
+												<Badge variant="outline" class="text-xs">Database</Badge>
+											{/if}
+										</div>
+									{/if}
+								{/if}
+							{/each}
+							{#if sortEntries(Object.entries(value)).length > 8}
+								<div class="text-sm text-muted-foreground italic">
+									...and {sortEntries(Object.entries(value)).length - 8} more items
+								</div>
+							{/if}
+						</div>
+					</Card.Content>
+				</Card.Root>
+			{:else}
+				<Card.Root>
+					<Card.Header>
+						<Card.Title class="flex items-center gap-2">
+							{#if value.path?.endsWith('.base')}
+								<DatabaseIcon class="h-5 w-5" />
+							{:else}
+								<FileIcon class="h-5 w-5" />
+							{/if}
+							<a href={getMapLink(key)} class="hover:underline">{value.title || key}</a>
+							{#if value.path?.endsWith('.base')}
+								<Badge variant="outline">Database</Badge>
+							{/if}
+						</Card.Title>
+						{#if value.description}
+							<Card.Description>{value.description}</Card.Description>
+						{/if}
+					</Card.Header>
+				</Card.Root>
+			{/if}
+		{/if}
+	{/each}
+</div>
+
+<div class="mt-12 text-center text-sm text-muted-foreground">
+	Site map generated from {Object.keys(toc).length} top-level sections
+</div>
+`;
+}

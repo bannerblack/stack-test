@@ -1,13 +1,33 @@
 export const toc = {
+  "2025-12-05": {
+    "path": "2025-12-05.md",
+    "title": "2025-12-05",
+    "__hasExtension": false
+  },
+  "cody": {
+    "path": "Cody.md",
+    "title": "Cody",
+    "__hasExtension": false
+  },
   "documentation": {
     "configuration": {
       "path": "Documentation/Configuration.md",
       "title": "Configuration",
       "__hasExtension": false
     },
+    "linux": {
+      "path": "Documentation/Linux.md",
+      "title": "Linux",
+      "__hasExtension": false
+    },
     "_meta": {
       "__originalName": "Documentation"
     }
+  },
+  "index": {
+    "path": "index.md",
+    "title": "Stack Documentation",
+    "__hasExtension": false
   },
   "languages": {
     "rust": {
@@ -176,6 +196,66 @@ export const toc = {
     },
     "_meta": {
       "__originalName": "Music"
+    }
+  },
+  "rust": {
+    "error-handling": {
+      "path": "Rust/Error Handling.md",
+      "title": "Error Handling",
+      "__hasExtension": false
+    },
+    "moc": {
+      "path": "Rust/MOC.md",
+      "title": "MOC",
+      "__hasExtension": false
+    },
+    "_meta": {
+      "__originalName": "Rust"
+    }
+  },
+  "stack": {
+    "rust": {
+      "rust-backend-moc": {
+        "path": "Stack/Rust/Rust Backend MOC.md",
+        "title": "Rust Backend MOC",
+        "__hasExtension": false
+      },
+      "seaorm": {
+        "seaorm-moc": {
+          "path": "Stack/Rust/SeaORM/SeaORM MOC.md",
+          "title": "SeaORM MOC",
+          "__hasExtension": false
+        },
+        "_meta": {
+          "__originalName": "SeaORM"
+        }
+      },
+      "_meta": {
+        "__originalName": "Rust"
+      }
+    },
+    "sveltekit": {
+      "sveltekit-moc": {
+        "path": "Stack/SvelteKit/Sveltekit MOC.md",
+        "title": "Sveltekit MOC",
+        "__hasExtension": false
+      },
+      "_meta": {
+        "__originalName": "SvelteKit"
+      }
+    },
+    "tauri": {
+      "tauri-moc": {
+        "path": "Stack/Tauri/Tauri MOC.md",
+        "title": "Tauri MOC",
+        "__hasExtension": false
+      },
+      "_meta": {
+        "__originalName": "Tauri"
+      }
+    },
+    "_meta": {
+      "__originalName": "Stack"
     }
   }
 };

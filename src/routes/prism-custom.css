@@ -1,8 +1,7 @@
-/**
- * prism.js Twilight theme
- * Based (more or less) on the Twilight theme originally of Textmate fame.
- * @author Remy Bach
- */
+/* 
+Custom CSS for PrismJS syntax highlighting.
+Go to layout.css to change the color scheme.
+*/
 code[class*='language-'],
 pre[class*='language-'] {
 	color: var(--prism-white);

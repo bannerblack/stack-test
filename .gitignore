@@ -22,3 +22,5 @@ Thumbs.db
 .vscode/
 
 /src/routes/generated/*
+AI_CONVENTIONS.md
+.github/instructions/CONVENTIONS.instructions.md

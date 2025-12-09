@@ -1,0 +1,19 @@
+---
+created: '2025-11-30T21:41:08.357Z'
+modified: '2025-11-30T21:35:26.795Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "created": "2025-11-30T21:41:08.357Z",
+  "modified": "2025-11-30T21:35:26.795Z"
+};
+  const pagePath = 'stack/tauri/tauri-moc';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+
+
+</GeneralNote>

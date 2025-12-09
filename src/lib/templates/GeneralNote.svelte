@@ -4,10 +4,12 @@
 	 * Default template for regular markdown notes
 	 * Supports: <Image>, <Calendar>, wikilinks
 	 */
-	import { base } from '$app/paths';
+	// import { base } from '$app/paths';
 	import Image from './Image.svelte';
 	import Calendar from './Calendar.svelte';
 	import CalendarRange from '@lucide/svelte/icons/calendar-range';
+
+	// UI Imports
 	import * as Card from '$lib/components/ui/card/index.js';
 	import Star from '@lucide/svelte/icons/star';
 
@@ -30,7 +32,6 @@
 <pre>{JSON.stringify(frontmatter, null, 2)}</pre> -->
 
 <!-- Note header with title -->
-
 {#if frontmatter?.title && templateConfig.basic_note_top_title}
 	<header class="note-header text-center mx-auto w-full">
 		<h1 class="text-4xl font-bold mb-1">{frontmatter.title}</h1>
@@ -100,6 +101,7 @@
 		</Card.Header>
 	</Card.Root>
 {/if}
+<!-- End Music Metadata -->
 
 <!-- Main content (markdown rendered by mdsvex) -->
 <!-- Conditionals for colored headers because we don't have direct access to the content -->
@@ -111,10 +113,10 @@
 	style:--h4-color={chartColors.h4}
 	style:--h5-color={chartColors.h5}
 >
-	{@render children()}
+	{@render children?.()}
 </article>
 
-<!-- Optional calendar at bottom -->
+<!-- Optional calendar -->
 {#if frontmatter?.created || frontmatter?.modified || frontmatter?.date}
 	<Calendar class="mt-8" {frontmatter} />
 {/if}

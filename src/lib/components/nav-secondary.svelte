@@ -1,5 +1,6 @@
 <script>
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
+	import { processNavLink } from '$lib/utils/path-utils.js';
 	import FileTextIcon from '@lucide/svelte/icons/file-text';
 
 	let { ref = $bindable(null), items, ...restProps } = $props();
@@ -13,7 +14,7 @@
 				<Sidebar.MenuItem>
 					<Sidebar.MenuButton size="sm">
 						{#snippet child({ props })}
-							<a href={item.url} {...props}>
+							<a href={processNavLink(item.url)} {...props}>
 								<ItemIcon />
 								<span>{item.title}</span>
 							</a>

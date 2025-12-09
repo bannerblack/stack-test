@@ -13,6 +13,10 @@ export const templateConfig = {
 
 This config file governs settings/choices you can make about the way your notes are displayed.
 
+Advancing the world by supporting scientists and people that like are once in a generational talents and will improve everyone's [[living conditions]]. I feel like I am a seemingly necessary individual.
+
+[[Sveltekit MOC]]
+
 1. `basic_note_cover_image`
 	- `true` : displays a cover image on the top of a note if the note contains an `image` property set to an existing photo location
 	- `false` : does not display a cover image

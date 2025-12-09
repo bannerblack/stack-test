@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-/* @import 'prismjs/themes/prism.css'; */
+/* 
+@import 'prismjs/themes/prism.css'; 
+Colors are defined within current file.
+*/
 @import './prism-custom.css';
 
 @custom-variant dark (&:is(.dark *));
@@ -12,6 +15,29 @@ h1 {
 
 h2 {
 	@apply mt-10 mb-6 font-semibold not-visited:text-3xl;
+}
+
+.note-content {
+	ol {
+		@apply ml-6 list-decimal;
+		@apply my-4;
+	}
+
+	ol li {
+		@apply inset-1 my-2 mt-4 border-l-0 border-muted-foreground pl-4;
+
+		ul li code {
+			@apply text-chart-1;
+		}
+	}
+
+	:not(pre) code {
+		@apply rounded bg-muted px-1 text-chart-3;
+	}
+
+	a {
+		@apply text-primary underline;
+	}
 }
 
 :root {

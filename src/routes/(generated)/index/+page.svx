@@ -1,0 +1,30 @@
+---
+title: Stack Documentation
+created: '2025-11-30T22:07:58.419Z'
+modified: '2025-12-09T03:14:53.101Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  import WikiLink from '$lib/components/WikiLink.svelte';
+  const frontmatter = {
+  "title": "Stack Documentation",
+  "created": "2025-11-30T22:07:58.419Z",
+  "modified": "2025-12-09T03:14:53.101Z"
+};
+  const pagePath = 'index';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+## Language Information
+
+- <WikiLink path="MOC" alias="Rust" />
+  - <WikiLink path="Error Handling" />
+
+## Music
+
+- <WikiLink path="Some Great Albums.base" alias="Great Albums Database" />
+
+
+</GeneralNote>

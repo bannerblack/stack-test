@@ -2,6 +2,7 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { useSidebar } from '$lib/components/ui/sidebar/index.js';
+	import { base } from '$app/paths';
 	import EllipsisIcon from '@lucide/svelte/icons/ellipsis';
 	import PinIcon from '@lucide/svelte/icons/pin';
 	import PinOffIcon from '@lucide/svelte/icons/pin-off';
@@ -21,7 +22,7 @@
 			<Sidebar.MenuItem>
 				<Sidebar.MenuButton>
 					{#snippet child({ props })}
-						<a href={item.url} {...props}>
+						<a href={`${base}${item.url}`} {...props}>
 							{#if ItemIcon}
 								<ItemIcon />
 							{:else}

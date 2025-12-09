@@ -1,0 +1,28 @@
+---
+created: '2025-12-06T07:27:31.552Z'
+modified: '2025-12-07T00:26:22.604Z'
+---
+
+<script>
+  import GeneralNote from '$lib/templates/GeneralNote.svelte';
+  const frontmatter = {
+  "created": "2025-12-06T07:27:31.552Z",
+  "modified": "2025-12-07T00:26:22.604Z"
+};
+  const pagePath = 'cody';
+</script>
+
+<GeneralNote {frontmatter} {pagePath}>
+
+https://youtube.com/shorts/pyus1Jz3R3o?si=RhDg84I_kbqomXd9  
+https://youtube.com/shorts/_Dd6Lbl1ko0?si=SA3W455tuNJscNgR
+
+Kimi wo sayounara, kurikaeranai, hitomi wo. Koi ni komareta saseragetaki Kimi wo sagasu. Anata wo furisubaru.
+
+Ware, yami to te. Kagerareta jikan no furemade.
+
+Kagerareta jikan no fureru made, kano hate made.
+
+Here I am to see ou succceed, I promise!!
+
+</GeneralNote>
